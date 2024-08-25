@@ -1,6 +1,7 @@
 ---
 - name: Setting up mongodb
   hosts: mongodb
+  become: yes
   tasks:
    - name: copy mongodb repo into yum.repos.d
      ansible.builtin.copy:
