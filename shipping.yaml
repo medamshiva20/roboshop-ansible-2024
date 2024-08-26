@@ -62,7 +62,7 @@
       name: mysql
       state: installed
    - name: Load the schema into mysql
-     ansible.builtin.shell: mysql -h roboshop-ansible-2024/inventory -uroot -pRoboShop@1 < /app/schema/shipping.sql
+     ansible.builtin.shell: mysql -h roboshop-us-dev-db-mysql-01.sivadevops.website -uroot -pRoboShop@1 < /app/schema/shipping.sql
    - name: Restart shipping service
      ansible.builtin.service:
       name: shipping
