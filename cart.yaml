@@ -1,0 +1,62 @@
+---
+- name: Setting up cart component
+  hosts: cart
+  become: yes
+  tasks:
+   - name: Install script which given by the vendor
+     ansible.builtin.shell: curl -sL https://rpm.nodesource.com/setup_lts.x | bash
+   - name: Install NodeJS package
+     ansible.builtin.yum:
+      name: nodejs 
+      state: installed 
+      update_cache: yes
+   - name: check roboshop user exists or not 
+     ansible.builtin.command: id roboshop
+     register: output 
+     ignore_errors: true 
+   - name: print the command output 
+     ansible.builtin.debug:
+      msg: "output is:{{output}}"
+   - name: print the exit status 
+     ansible.builtin.debug:
+      msg: "{{output.rc}}"
+   - name: create roboshop user if not exists
+     ansible.builtin.user:
+      name: roboshop
+     when: output.rc !=0
+   - name: check if the app directory exists or not
+     ansible.builtin.stat:
+      path: /app
+     register: directory
+   - name: print the directory output 
+     ansible.builtin.debug:
+      msg: "{{directory}}"
+   - name: if app directory not exists create it 
+     ansible.builtin.file:
+      name: /app
+      state: directory
+     when: directory.stat.exists == False
+   - name: Download the cart application code
+     ansible.builtin.get_url:
+      url: https://roboshop-builds.s3.amazonaws.com/cart.zip
+      dest: /tmp
+   - name: Unzip the cart application code
+     ansible.builtin.unarchive:
+      src: /tmp/cart.zip
+      dest: /app
+      remote_src: yes
+   - name: Install dependencies
+     ansible.builtin.command: npm install
+     args:
+      chdir: /app
+   - name: copy cart service
+     src: cart.service
+     dest: /etc/systemd/system/cart.service
+   - name: Start and Enable the cart service
+     ansible.builtin.service:
+      name: cart
+      state: started
+      enable: true
+      daemon_reload: true
+...
+
