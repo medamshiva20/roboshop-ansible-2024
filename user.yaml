@@ -1,0 +1,41 @@
+---
+- name: Setting up user component
+  hosts: user
+  become: yes
+  tasks:
+   - name: Install NodeJS script which is provided by vendor 
+     ansible.builtin.shell: curl -sL https://rpm.nodesource.com/setup_lts.x | bash
+   - name: Install NodeJS package 
+     ansible.builtin.yum:
+      name: nodejs
+      state: installed
+      update_cache: yes
+   - name: Check roboshop user exists or not 
+     ansible.builtin.command: id roboshop 
+     register: robo.out
+     ignore_errors: true
+   - name: print the command output 
+     ansible.builtin.debug:
+      msg: "output is:{{robo.out}}"
+   - name: print the exit status 
+     ansible.builtin.debug:
+      msg: "{{robo.out.rc}}"
+   - name: check the app directory exists or not 
+     ansible.builtin.stat:
+      path: /app
+      register: directory
+   - name: if app directory not exists create it 
+     ansible.builtin.file:
+      name: /app
+      state: directory
+     when: stat.directory.exists == False
+   - name: Download the user application code
+     ansible.builtin.get_url:
+      url: curl -L -o /tmp/user.zip https://roboshop-builds.s3.amazonaws.com/user.zip
+      dest: /tmp
+   - name: Unzip user application code
+     ansible.builtin.unarchive:
+      src: /tmp/user.zip
+      dest: /app
+      remote_src: yes
+   - name: copy user service
