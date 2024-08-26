@@ -12,14 +12,14 @@
       update_cache: yes
    - name: Check roboshop user exists or not 
      ansible.builtin.command: id roboshop 
-     register: robo.out
+     register: output
      ignore_errors: true
    - name: print the command output 
      ansible.builtin.debug:
-      msg: "output is:{{robo.out}}"
+      msg: "output is:{{output}}"
    - name: print the exit status 
      ansible.builtin.debug:
-      msg: "{{robo.out.rc}}"
+      msg: "{{output.rc}}"
    - name: check the app directory exists or not 
      ansible.builtin.stat:
       path: /app
