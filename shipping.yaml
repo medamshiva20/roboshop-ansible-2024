@@ -33,7 +33,7 @@
      ansible.builtin.file:
       name: /app
       state: directory
-     when: directory.stats.exists == False
+     when: directory.stat.exists == False
    - name: Download and unarchive application code
      ansible.builtin.unarchive:
       src: https://roboshop-builds.s3.amazonaws.com/shipping.zip
