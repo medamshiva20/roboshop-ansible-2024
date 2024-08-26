@@ -1,6 +1,7 @@
 ---
 - name: Setting up catalogue
   hosts: catalogue
+  become: yes
   tasks:
    - name: Setting up NodeJS repo which is given by vendor
      ansible.builtin.shell: curl -sL https://rpm.nodesource.com/setup_lts.x | bash
