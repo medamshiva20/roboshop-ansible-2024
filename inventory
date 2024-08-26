@@ -15,3 +15,15 @@ roboshop-us-dev-app-user-01.sivadevops.website
 
 [cart]
 roboshop-us-dev-app-cart-01.sivadevops.website
+
+[mysql]
+roboshop-us-dev-db-mysql-01.sivadevops.website
+
+[shipping]
+roboshop-us-dev-app-shipping-01.sivadevops.website
+
+[rabbitmq]
+roboshop-us-dev-db-rabbitmq-01.sivadevops.website
+
+[payment]
+roboshop-us-dev-app-payment-01.sivadevops.website

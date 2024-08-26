@@ -1,0 +1,24 @@
+---
+- name: Setting up mysql
+  hosts: mysql
+  become: yes
+  tasks:
+   - name: Disable mysql 8 version package
+     ansible.builtin.shell: yum module disable mysql -y
+   - name: copy mysql.repo into yum.repos.d
+     ansible.builtin.copy:
+      src: mysql.repo
+      dest: /etc/yum.repos.d/mysql.repo
+   - name: Install mysql package
+     ansible.builtin.yum:
+      name: mysql-community-server
+      state: installed
+      update_cache: yes
+   - name: start and enable mysql service 
+     ansible.builtin.service:
+      name: mysqld
+      state: started
+      enabled: true
+   - name: Setting mysql root password
+     ansible.builtin.shell: mysql_secure_installation ---set-root-pass RoboShop@123
+...
