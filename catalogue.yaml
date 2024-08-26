@@ -34,6 +34,7 @@
    - name: if app directory not exists create it
      ansible.builtin.file:
       name: /app
+      state: directory
      when: directory.stat.exists == False
    - name: download the catalogue artifact
      ansible.builtin.get_url:
