@@ -23,7 +23,7 @@
    - name: check the app directory exists or not 
      ansible.builtin.stat:
       path: /app
-      register: directory
+     register: directory
    - name: if app directory not exists create it 
      ansible.builtin.file:
       name: /app
