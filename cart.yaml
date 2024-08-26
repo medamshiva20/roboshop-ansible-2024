@@ -49,9 +49,10 @@
      ansible.builtin.command: npm install
      args:
       chdir: /app
-   - name: copy cart service
-     src: cart.service
-     dest: /etc/systemd/system/cart.service
+   - name: copy cart service into systemd folder
+     ansible.builtin.copy:
+      src: cart.service
+      dest: /etc/systemd/system/cart.service
    - name: Start and Enable the cart service
      ansible.builtin.service:
       name: cart
