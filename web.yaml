@@ -1,6 +1,7 @@
 ---
 - name: Setting up web component
   hosts: web
+  become: yes
   tasks:
    - name: Install nginx package
      ansible.builtin.yum:
