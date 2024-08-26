@@ -20,15 +20,18 @@
    - name: print the exit status 
      ansible.builtin.debug:
       msg: "{{output.rc}}"
-   - name: check the app directory exists or not 
+   - name: check if the app directory exists or not 
      ansible.builtin.stat:
       path: /app
      register: directory
+   - name: print the directory output
+     ansible.builtin.debug:
+      msg: "{{directory}}"
    - name: if app directory not exists create it 
      ansible.builtin.file:
       name: /app
       state: directory
-     when: stat.directory.exists == 'False'
+     when: directory.stat.exists == 'False'
    - name: Download the user application code
      ansible.builtin.get_url:
       url: curl -L -o /tmp/user.zip https://roboshop-builds.s3.amazonaws.com/user.zip
