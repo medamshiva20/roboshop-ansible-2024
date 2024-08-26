@@ -6,3 +6,12 @@ roboshop-us-dev-app-catalogue-01.sivadevops.website
 
 [web]
 roboshop-us-dev-web-web-01.sivadevops.website
+
+[redis]
+roboshop-us-dev-db-redis-01.sivadevops.website
+
+[user]
+roboshop-us-dev-app-user-01.sivadevops.website
+
+[cart]
+roboshop-us-dev-app-cart-01.sivadevops.website
