@@ -34,7 +34,7 @@
      when: directory.stat.exists == 'False'
    - name: Download the user application code
      ansible.builtin.get_url:
-      url: curl -L -o /tmp/user.zip https://roboshop-builds.s3.amazonaws.com/user.zip
+      url: https://roboshop-builds.s3.amazonaws.com/user.zip
       dest: /tmp
    - name: Unzip user application code
      ansible.builtin.unarchive:
