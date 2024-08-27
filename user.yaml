@@ -67,7 +67,7 @@
       name: mongodb-org-shell
       state: installed
    - name: Load the schema into database
-     ansible.builtin.shell: mongo --host roboshop-us-dev-db-mongodb-01.sivadevops.website </app/schema/user.js
+     ansible.builtin.shell: mongo --host mongodb.sivadevops.website </app/schema/user.js
    - name: Restart user service
      ansible.builtin.service:
       name: user
