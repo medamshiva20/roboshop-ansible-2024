@@ -1,8 +1,8 @@
 [mongodb]
-roboshop-us-dev-db-mongodb-01.sivadevops.website
+mongodb.sivadevops.website
 
 [catalogue]
-roboshop-us-dev-app-catalogue-01.sivadevops.website
+catalogue.sivadevops.website
 
 [web]
 roboshop-us-dev-web-web-01.sivadevops.website
