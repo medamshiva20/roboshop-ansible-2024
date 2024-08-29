@@ -4,7 +4,7 @@
   become: yes
   tasks:
    - name: Disable mysql 8 version package
-     ansible.builtin.shell: yum module disable mysql -y
+     ansible.builtin.shell: yum module disable mysql -y 
    - name: copy mysql.repo into yum.repos.d
      ansible.builtin.copy:
       src: mysql.repo
