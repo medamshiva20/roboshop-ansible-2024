@@ -7,14 +7,14 @@
      ansible.builtin.yum:
       name: "{{item}}"
       state: installed
-    loop:
+     loop:
      - python36
      - gcc
      - python3-devel
    - name: check roboshop user exist or not
-    ansible.builtin.command: id roboshop
-    register: out #output is variable name
-    ignore_errors: true
+     ansible.builtin.command: id roboshop
+     register: out #output is variable name
+     ignore_errors: true
    - name: create user roboshop
      become: yes # we need sudo access for this task only
      ansible.builtin.user:
@@ -29,7 +29,7 @@
       msg: "output: {{directory}}"
    - name: create /app directory
      ansible.builtin.file:
-      path: /app
+      name: /app
       state: directory
      when: directory.stat.exists == False
    - name: Download payment application code
@@ -51,5 +51,6 @@
    - name: Start and Enable service
      ansible.builtin.service:
       name: payment
+      state: started
       enabled: true
 ...
