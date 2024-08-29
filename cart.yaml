@@ -45,8 +45,8 @@
       dest: /app
    - name: Install dependencies 
      ansible.builtin.command:
-      args:
-       chdir: /app
+     args:
+      chdir: /app
    - name: copy cart service into systemd folder
      ansible.builtin.copy:
       src: cart.service
