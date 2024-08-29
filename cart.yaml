@@ -33,6 +33,7 @@
    - name: create app directory
      ansible.builtin.file:
       name: /app
+      state: directory
      when: directory.stat.exists == false
    - name: Download catalogue application code
      ansible.builtin.get_url:
