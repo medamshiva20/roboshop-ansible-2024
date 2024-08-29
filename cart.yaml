@@ -56,20 +56,20 @@
       name: cart
       enabled: true
       daemon-reload: true
-   - name: copy mongo.repo into yum.repo.d folder
-     ansible.builtin.copy:
-      src: mongo.repo
-      dest: /etc/yum.repos.d/
-   - name: Install mongodb client package
-     ansible.builtin.yum:
-      name: mongodb-org-shell
-      state: installed
-   - name: Load schema of cart into mongodb database
-     ansible.builtin.shell: mongo --host  mongodb.sivadevops.website < /app/schema/cart.js
-   - name: Restart mongod service
-     ansible.builtin.service:
-      name: mongod
-      state: restarted
+  #  - name: copy mongo.repo into yum.repo.d folder
+  #    ansible.builtin.copy:
+  #     src: mongo.repo
+  #     dest: /etc/yum.repos.d/
+  #  - name: Install mongodb client package
+  #    ansible.builtin.yum:
+  #     name: mongodb-org-shell
+  #     state: installed
+  #  - name: Load schema of cart into mongodb database
+  #    ansible.builtin.shell: mongo --host  mongodb.sivadevops.website < /app/schema/cart.js
+  #  - name: Restart mongod service
+  #    ansible.builtin.service:
+  #     name: mongod
+  #     state: restarted
 ...
      
      
