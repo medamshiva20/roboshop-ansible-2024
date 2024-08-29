@@ -21,7 +21,8 @@
       msg: "{{output.rc}}"
    - name: Create roboshop user
      ansible.builtin.user:
-      name: output.rc !=0
+      name: roboshop
+     when: output.rc !=0
    - name: Check if the directory exists or not 
      ansible.builtin.stat:
       path: /app
