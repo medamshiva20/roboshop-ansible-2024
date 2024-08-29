@@ -54,6 +54,7 @@
    - name: reload deamon
      ansible.builtin.service:
       name: cart
+      state: started
       enabled: true
       daemon-reload: true
   #  - name: copy mongo.repo into yum.repo.d folder
